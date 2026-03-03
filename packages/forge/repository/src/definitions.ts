@@ -2,6 +2,7 @@
 import { anthropicBlock } from "@typebot.io/anthropic-block";
 import { blinkBlock } from "@typebot.io/blink-block";
 import { calComBlock } from "@typebot.io/cal-com-block";
+import { clinixBlock } from "@typebot.io/clinix-block";
 import { chatNodeBlock } from "@typebot.io/chat-node-block";
 import { deepSeekBlock } from "@typebot.io/deepseek-block";
 import { difyAiBlock } from "@typebot.io/dify-ai-block";
@@ -39,6 +40,7 @@ export const forgedBlocks = {
   [deepSeekBlock.id]: deepSeekBlock,
   [blinkBlock.id]: blinkBlock,
   [gmailBlock.id]: gmailBlock,
+  [clinixBlock.id]: clinixBlock,
 };
 export type ForgedBlockDefinition =
   (typeof forgedBlocks)[keyof typeof forgedBlocks];

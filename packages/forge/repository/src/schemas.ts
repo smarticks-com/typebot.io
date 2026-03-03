@@ -7,6 +7,8 @@ import { calComBlock } from "@typebot.io/cal-com-block";
 import { calComBlockSchema } from "@typebot.io/cal-com-block/schemas";
 import { chatNodeBlock } from "@typebot.io/chat-node-block";
 import { chatNodeBlockSchema } from "@typebot.io/chat-node-block/schemas";
+import { clinixBlock } from "@typebot.io/clinix-block";
+import { clinixBlockSchema } from "@typebot.io/clinix-block/schemas";
 import { deepSeekBlock } from "@typebot.io/deepseek-block";
 import { deepSeekBlockSchema } from "@typebot.io/deepseek-block/schemas";
 import { difyAiBlock } from "@typebot.io/dify-ai-block";
@@ -59,6 +61,7 @@ export const forgedBlockSchemas = {
   [deepSeekBlock.id]: deepSeekBlockSchema,
   [blinkBlock.id]: blinkBlockSchema,
   [gmailBlock.id]: gmailBlockSchema,
+  [clinixBlock.id]: clinixBlockSchema,
 } as const;
 
 export const forgedBlockSchema = z.discriminatedUnion("type", [
@@ -81,5 +84,6 @@ export const forgedBlockSchema = z.discriminatedUnion("type", [
   deepSeekBlockSchema,
   blinkBlockSchema,
   gmailBlockSchema,
+  clinixBlockSchema,
 ]);
 export type ForgedBlock = z.infer<typeof forgedBlockSchema>;

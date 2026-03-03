@@ -21,4 +21,5 @@ export const forgedBlockIds = [
   "deepseek",
   "blink",
   "gmail",
+  "clinix",
 ] as const satisfies readonly ForgedBlock["type"][];

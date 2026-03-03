@@ -5,6 +5,8 @@ import { blinkBlock } from "@typebot.io/blink-block";
 import blinkBlockHandlers from "@typebot.io/blink-block/handlers";
 import { calComBlock } from "@typebot.io/cal-com-block";
 import calComBlockHandlers from "@typebot.io/cal-com-block/handlers";
+import { clinixBlock } from "@typebot.io/clinix-block";
+import clinixBlockHandlers from "@typebot.io/clinix-block/handlers";
 import { chatNodeBlock } from "@typebot.io/chat-node-block";
 import chatNodeBlockHandlers from "@typebot.io/chat-node-block/handlers";
 import { deepSeekBlock } from "@typebot.io/deepseek-block";
@@ -58,4 +60,5 @@ export const forgedBlockHandlers = {
   [deepSeekBlock.id]: deepSeekBlockHandlers,
   [blinkBlock.id]: blinkBlockHandlers,
   [gmailBlock.id]: gmailBlockHandlers,
+  [clinixBlock.id]: clinixBlockHandlers,
 };

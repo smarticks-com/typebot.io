@@ -5,6 +5,8 @@ import { blinkBlock } from "@typebot.io/blink-block";
 import { blinkCredentialsSchema } from "@typebot.io/blink-block/schemas";
 import { chatNodeBlock } from "@typebot.io/chat-node-block";
 import { chatNodeCredentialsSchema } from "@typebot.io/chat-node-block/schemas";
+import { clinixBlock } from "@typebot.io/clinix-block";
+import { clinixCredentialsSchema } from "@typebot.io/clinix-block/schemas";
 import { deepSeekBlock } from "@typebot.io/deepseek-block";
 import { deepSeekCredentialsSchema } from "@typebot.io/deepseek-block/schemas";
 import { difyAiBlock } from "@typebot.io/dify-ai-block";
@@ -52,4 +54,5 @@ export const forgedCredentialsSchemas = {
   [deepSeekBlock.id]: deepSeekCredentialsSchema,
   [blinkBlock.id]: blinkCredentialsSchema,
   [gmailBlock.id]: gmailCredentialsSchema,
+  [clinixBlock.id]: clinixCredentialsSchema,
 };

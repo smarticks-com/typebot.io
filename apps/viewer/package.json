@@ -21,7 +21,6 @@
     "@orpc/zod": "^1.13.4",
     "@orpc/otel": "^1.12.3",
     "@typebot.io/bot-engine": "workspace:*",
-    "@typebot.io/clinix": "workspace:*",
     "@typebot.io/react": "workspace:*",
     "@typebot.io/prisma": "workspace:*",
     "@typebot.io/groups": "workspace:*",
