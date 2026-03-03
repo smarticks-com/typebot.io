@@ -34,12 +34,12 @@ async function drwebCall(
   }
 
   const data = (await res.json()) as {
-    code?: number;
-    error?: string;
-    result?: unknown;
+    Code?: number;
+    Error?: string | null;
+    Result?: unknown;
   };
-  if (data.code !== undefined && data.code !== 0)
-    throw new Error(data.error || `DRWeb error code ${data.code}`);
+  if (data.Code !== undefined && data.Code !== 1)
+    throw new Error(data.Error || `DRWeb error code ${data.Code}`);
 
   return data;
 }
@@ -64,14 +64,14 @@ export default [
           },
         );
 
-        const patients = (data.result as any[]) || [];
+        const patients = (data.Result as any[]) || [];
         const first = patients[0];
 
         const vars: { id: string; value: unknown }[] = [];
         if (options.saveResultId && first)
-          vars.push({ id: options.saveResultId, value: String(first.id) });
+          vars.push({ id: options.saveResultId, value: String(first.ID) });
         if (options.saveResultName && first)
-          vars.push({ id: options.saveResultName, value: first.name });
+          vars.push({ id: options.saveResultName, value: first.Name });
         if (options.saveResultJson)
           vars.push({
             id: options.saveResultJson,
@@ -108,10 +108,10 @@ export default [
           },
         );
 
-        const result = data.result as { id?: number } | null;
-        if (options.saveCustomerId && result?.id)
+        const result = data.Result as { CustomerID?: number } | null;
+        if (options.saveCustomerId && result?.CustomerID)
           variables.set([
-            { id: options.saveCustomerId, value: String(result.id) },
+            { id: options.saveCustomerId, value: String(result.CustomerID) },
           ]);
       } catch (error) {
         logs.add({
@@ -138,7 +138,7 @@ export default [
           variables.set([
             {
               id: options.saveResultJson,
-              value: JSON.stringify(data.result || []),
+              value: JSON.stringify(data.Result || []),
             },
           ]);
       } catch (error) {
@@ -165,7 +165,7 @@ export default [
           variables.set([
             {
               id: options.saveResultJson,
-              value: JSON.stringify(data.result || []),
+              value: JSON.stringify(data.Result || []),
             },
           ]);
       } catch (error) {
@@ -206,7 +206,7 @@ export default [
           variables.set([
             {
               id: options.saveResultJson,
-              value: JSON.stringify(data.result || []),
+              value: JSON.stringify(data.Result || []),
             },
           ]);
       } catch (error) {
@@ -249,12 +249,12 @@ export default [
           },
         );
 
-        const result = data.result as { appointmentID?: number } | null;
-        if (options.saveAppointmentId && result?.appointmentID)
+        const result = data.Result as { AppointmentID?: number } | null;
+        if (options.saveAppointmentId && result?.AppointmentID)
           variables.set([
             {
               id: options.saveAppointmentId,
-              value: String(result.appointmentID),
+              value: String(result.AppointmentID),
             },
           ]);
       } catch (error) {
