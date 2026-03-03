@@ -1,4 +1,5 @@
 import { chatRouter } from "@typebot.io/bot-engine/api/router";
+import { clinixRouter } from "@typebot.io/clinix/api/router";
 import {
   protectedProcedure,
   publicProcedure,
@@ -64,6 +65,7 @@ export const appRouter = {
   },
   webhook: webhookRouter,
   chatWhatsAppRouter,
+  clinix: clinixRouter,
 };
 
 export type AppRouter = typeof appRouter;

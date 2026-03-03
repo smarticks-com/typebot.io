@@ -1,0 +1,14 @@
+{
+  "name": "@typebot.io/clinix",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "@orpc/server": "^1.13.4",
+    "@typebot.io/config": "workspace:*",
+    "zod": "^4.3.5"
+  }
+}
