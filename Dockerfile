@@ -6,9 +6,6 @@ RUN apt-get update -qq \
     && apt-get install -qq --no-install-recommends \
     ca-certificates \
     curl \
-    dirmngr \
-    gpg \
-    gpg-agent \
     unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
@@ -33,23 +30,15 @@ RUN apt-get update -qq \
     --compressed \
     --retry 5 \
     || (echo "error: failed to download: $tag" && exit 1) \
-    && for key in \
-    "F3DCC08A8572C0749B3E18888EAB4D40A7B22B59" \
-    ; do \
-    gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$key" \
-    || gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
-    done \
-    && curl "https://github.com/oven-sh/bun/releases/$release/SHASUMS256.txt.asc" \
+    && curl "https://github.com/oven-sh/bun/releases/$release/SHASUMS256.txt" \
     -fsSLO \
     --compressed \
     --retry 5 \
-    && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
-    || (echo "error: failed to verify: $tag" && exit 1) \
     && grep " bun-linux-$build.zip\$" SHASUMS256.txt | sha256sum -c - \
-    || (echo "error: failed to verify: $tag" && exit 1) \
+    || (echo "error: failed to verify checksum: $tag" && exit 1) \
     && unzip "bun-linux-$build.zip" \
     && mv "bun-linux-$build/bun" /usr/local/bin/bun \
-    && rm -f "bun-linux-$build.zip" SHASUMS256.txt.asc SHASUMS256.txt \
+    && rm -f "bun-linux-$build.zip" SHASUMS256.txt \
     && chmod +x /usr/local/bin/bun \
     && which bun \
     && bun --version
@@ -107,7 +96,7 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/packages/prisma/postgresql ./packages/prisma/postgresql
 COPY --from=builder --chown=node:node /app/apps/${SCOPE}/.next/standalone ./
 COPY --from=builder --chown=node:node /app/apps/${SCOPE}/.next/static ./apps/${SCOPE}/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/${SCOPE}/public ./apps/${SCOPE}/public
+COPY --from=builder --chown=node:node /app/apps/${SCOPE}/public ./apps/${SCOPE}/public
 
 
 COPY scripts/${SCOPE}-entrypoint.sh ./

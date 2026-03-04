@@ -800,6 +800,19 @@
         "@types/react": "^19.2.7",
       },
     },
+    "packages/forge/blocks/drweb": {
+      "name": "@typebot.io/drweb-block",
+      "version": "1.0.0",
+      "dependencies": {
+        "ky": "^1.2.4",
+        "@typebot.io/forge": "workspace:*",
+        "@typebot.io/lib": "workspace:*",
+      },
+      "devDependencies": {
+        "@typebot.io/tsconfig": "workspace:*",
+        "@types/react": "^19.2.7",
+      },
+    },
     "packages/forge/blocks/deepseek": {
       "name": "@typebot.io/deepseek-block",
       "version": "1.0.0",
@@ -1040,6 +1053,7 @@
         "@typebot.io/blink-block": "workspace:*",
         "@typebot.io/cal-com-block": "workspace:*",
         "@typebot.io/chat-node-block": "workspace:*",
+        "@typebot.io/drweb-block": "workspace:*",
         "@typebot.io/deepseek-block": "workspace:*",
         "@typebot.io/dify-ai-block": "workspace:*",
         "@typebot.io/elevenlabs-block": "workspace:*",
@@ -2986,6 +3000,8 @@
     "@typebot.io/chat-node-block": ["@typebot.io/chat-node-block@workspace:packages/forge/blocks/chatNode"],
 
     "@typebot.io/chat-session": ["@typebot.io/chat-session@workspace:packages/chat-session"],
+
+    "@typebot.io/drweb-block": ["@typebot.io/drweb-block@workspace:packages/forge/blocks/drweb"],
 
     "@typebot.io/conditions": ["@typebot.io/conditions@workspace:packages/conditions"],
 
