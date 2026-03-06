@@ -27,6 +27,7 @@
     "@typebot.io/blink-block": "workspace:*",
     "@typebot.io/gmail-block": "workspace:*",
     "@typebot.io/drweb-block": "workspace:*",
+    "@typebot.io/smartchat-block": "workspace:*",
     "zod": "^4.3.5"
   },
   "devDependencies": {

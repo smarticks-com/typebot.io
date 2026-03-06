@@ -54,6 +54,7 @@
         "@typebot.io/emails": "workspace:*",
         "@typebot.io/env": "workspace:*",
         "@typebot.io/events": "workspace:*",
+        "@typebot.io/file-input-block": "workspace:*",
         "@typebot.io/groups": "workspace:*",
         "@typebot.io/logs": "workspace:*",
         "@typebot.io/react": "workspace:*",
@@ -211,6 +212,7 @@
         "@paralleldrive/cuid2": "^2.2.1",
         "@planetscale/database": "^1.8.0",
         "@sentry/nextjs": "^10.32.1",
+        "@typebot.io/auth": "workspace:*",
         "@typebot.io/blocks-bubbles": "workspace:*",
         "@typebot.io/blocks-core": "workspace:*",
         "@typebot.io/blocks-inputs": "workspace:*",
@@ -800,19 +802,6 @@
         "@types/react": "^19.2.7",
       },
     },
-    "packages/forge/blocks/drweb": {
-      "name": "@typebot.io/drweb-block",
-      "version": "1.0.0",
-      "dependencies": {
-        "ky": "^1.2.4",
-        "@typebot.io/forge": "workspace:*",
-        "@typebot.io/lib": "workspace:*",
-      },
-      "devDependencies": {
-        "@typebot.io/tsconfig": "workspace:*",
-        "@types/react": "^19.2.7",
-      },
-    },
     "packages/forge/blocks/deepseek": {
       "name": "@typebot.io/deepseek-block",
       "version": "1.0.0",
@@ -835,6 +824,19 @@
         "@typebot.io/forge": "workspace:*",
         "@typebot.io/lib": "workspace:*",
         "dify-ai-provider": "^0.1.6",
+        "ky": "^1.2.4",
+      },
+      "devDependencies": {
+        "@typebot.io/tsconfig": "workspace:*",
+        "@types/react": "^19.2.7",
+      },
+    },
+    "packages/forge/blocks/drweb": {
+      "name": "@typebot.io/drweb-block",
+      "version": "1.0.0",
+      "dependencies": {
+        "@typebot.io/forge": "workspace:*",
+        "@typebot.io/lib": "workspace:*",
         "ky": "^1.2.4",
       },
       "devDependencies": {
@@ -998,6 +1000,19 @@
         "@types/react": "^19.2.7",
       },
     },
+    "packages/forge/blocks/smartchat": {
+      "name": "@typebot.io/smartchat-block",
+      "version": "1.0.0",
+      "dependencies": {
+        "@typebot.io/forge": "workspace:*",
+        "@typebot.io/lib": "workspace:*",
+        "ky": "^1.2.4",
+      },
+      "devDependencies": {
+        "@typebot.io/tsconfig": "workspace:*",
+        "@types/react": "^19.2.7",
+      },
+    },
     "packages/forge/blocks/togetherAi": {
       "name": "@typebot.io/together-ai-block",
       "version": "1.0.0",
@@ -1053,9 +1068,9 @@
         "@typebot.io/blink-block": "workspace:*",
         "@typebot.io/cal-com-block": "workspace:*",
         "@typebot.io/chat-node-block": "workspace:*",
-        "@typebot.io/drweb-block": "workspace:*",
         "@typebot.io/deepseek-block": "workspace:*",
         "@typebot.io/dify-ai-block": "workspace:*",
+        "@typebot.io/drweb-block": "workspace:*",
         "@typebot.io/elevenlabs-block": "workspace:*",
         "@typebot.io/gmail-block": "workspace:*",
         "@typebot.io/groq-block": "workspace:*",
@@ -1067,6 +1082,7 @@
         "@typebot.io/posthog-block": "workspace:*",
         "@typebot.io/qrcode-block": "workspace:*",
         "@typebot.io/segment-block": "workspace:*",
+        "@typebot.io/smartchat-block": "workspace:*",
         "@typebot.io/together-ai-block": "workspace:*",
         "@typebot.io/zendesk-block": "workspace:*",
         "zod": "^4.3.5",
@@ -3001,8 +3017,6 @@
 
     "@typebot.io/chat-session": ["@typebot.io/chat-session@workspace:packages/chat-session"],
 
-    "@typebot.io/drweb-block": ["@typebot.io/drweb-block@workspace:packages/forge/blocks/drweb"],
-
     "@typebot.io/conditions": ["@typebot.io/conditions@workspace:packages/conditions"],
 
     "@typebot.io/config": ["@typebot.io/config@workspace:packages/config"],
@@ -3012,6 +3026,8 @@
     "@typebot.io/deepseek-block": ["@typebot.io/deepseek-block@workspace:packages/forge/blocks/deepseek"],
 
     "@typebot.io/dify-ai-block": ["@typebot.io/dify-ai-block@workspace:packages/forge/blocks/difyAi"],
+
+    "@typebot.io/drweb-block": ["@typebot.io/drweb-block@workspace:packages/forge/blocks/drweb"],
 
     "@typebot.io/elevenlabs-block": ["@typebot.io/elevenlabs-block@workspace:packages/forge/blocks/elevenlabs"],
 
@@ -3078,6 +3094,8 @@
     "@typebot.io/segment-block": ["@typebot.io/segment-block@workspace:packages/forge/blocks/segment"],
 
     "@typebot.io/settings": ["@typebot.io/settings@workspace:packages/settings"],
+
+    "@typebot.io/smartchat-block": ["@typebot.io/smartchat-block@workspace:packages/forge/blocks/smartchat"],
 
     "@typebot.io/telemetry": ["@typebot.io/telemetry@workspace:packages/telemetry"],
 

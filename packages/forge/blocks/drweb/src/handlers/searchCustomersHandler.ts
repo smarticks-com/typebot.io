@@ -18,29 +18,42 @@ export const searchCustomersHandler = createActionHandler(searchCustomers, {
     if (!apiToken) return logs.add("API token is empty");
 
     try {
-      const body: Record<string, unknown> = {
-        maxResults: options.maxResults ?? 10,
-      };
+      const maxResults = options.maxResults ?? 10;
+      let phone = "";
       if (options.phone) {
-        // Normalize phone: strip +972/972 prefix and add 0
-        let phone = options.phone.replace(/\D/g, "");
+        phone = options.phone.replace(/\D/g, "");
         if (phone.startsWith("972")) phone = "0" + phone.slice(3);
         if (!phone.startsWith("0")) phone = "0" + phone;
-        body.cellPhone = phone;
       }
 
-      const data = await ky
-        .post(`${tenantUrl}/CommonAPI/v1/Customer/SearchCustomers`, {
-          headers: {
-            "Content-Type": "application/json",
-            DRWebCommonAPIToken: apiToken,
-          },
-          json: body,
+      const url = `${tenantUrl}/CommonAPI/v1/Customer/SearchCustomers`;
+      const headers = {
+        "Content-Type": "application/json",
+        DRWebCommonAPIToken: apiToken,
+      };
+
+      // Try with phone filter first (matches Phone/landline field)
+      let data = await ky
+        .post(url, {
+          headers,
+          json: phone ? { phone, maxResults } : { maxResults },
           timeout: 10_000,
         })
         .json<{ Code: number; Error: string | null; Result: unknown[] | null }>();
 
-      const results = data.Result ?? [];
+      let results = data.Result ?? [];
+
+      // If no results, number may be in Mobile field — retry without filter
+      if (results.length === 0 && phone) {
+        data = await ky
+          .post(url, {
+            headers,
+            json: { maxResults },
+            timeout: 10_000,
+          })
+          .json<{ Code: number; Error: string | null; Result: unknown[] | null }>();
+        results = data.Result ?? [];
+      }
 
       if (options.saveResultsTo)
         variables.set([

@@ -13,6 +13,8 @@ import { difyAiBlock } from "@typebot.io/dify-ai-block";
 import { difyAiBlockSchema } from "@typebot.io/dify-ai-block/schemas";
 import { drwebBlock } from "@typebot.io/drweb-block";
 import { drwebBlockSchema } from "@typebot.io/drweb-block/schemas";
+import { smartchatBlock } from "@typebot.io/smartchat-block";
+import { smartchatBlockSchema } from "@typebot.io/smartchat-block/schemas";
 import { elevenlabsBlock } from "@typebot.io/elevenlabs-block";
 import { elevenlabsBlockSchema } from "@typebot.io/elevenlabs-block/schemas";
 import { gmailBlock } from "@typebot.io/gmail-block";
@@ -62,6 +64,7 @@ export const forgedBlockSchemas = {
   [blinkBlock.id]: blinkBlockSchema,
   [gmailBlock.id]: gmailBlockSchema,
   [drwebBlock.id]: drwebBlockSchema,
+  [smartchatBlock.id]: smartchatBlockSchema,
 } as const;
 
 export const forgedBlockSchema = z.discriminatedUnion("type", [
@@ -85,5 +88,6 @@ export const forgedBlockSchema = z.discriminatedUnion("type", [
   blinkBlockSchema,
   gmailBlockSchema,
   drwebBlockSchema,
+  smartchatBlockSchema,
 ]);
 export type ForgedBlock = z.infer<typeof forgedBlockSchema>;

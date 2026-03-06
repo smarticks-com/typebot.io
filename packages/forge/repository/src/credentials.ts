@@ -11,6 +11,8 @@ import { difyAiBlock } from "@typebot.io/dify-ai-block";
 import { difyAiCredentialsSchema } from "@typebot.io/dify-ai-block/schemas";
 import { drwebBlock } from "@typebot.io/drweb-block";
 import { drwebCredentialsSchema } from "@typebot.io/drweb-block/schemas";
+import { smartchatBlock } from "@typebot.io/smartchat-block";
+import { smartchatCredentialsSchema } from "@typebot.io/smartchat-block/schemas";
 import { elevenlabsBlock } from "@typebot.io/elevenlabs-block";
 import { elevenlabsCredentialsSchema } from "@typebot.io/elevenlabs-block/schemas";
 import { gmailBlock } from "@typebot.io/gmail-block";
@@ -55,4 +57,5 @@ export const forgedCredentialsSchemas = {
   [blinkBlock.id]: blinkCredentialsSchema,
   [gmailBlock.id]: gmailCredentialsSchema,
   [drwebBlock.id]: drwebCredentialsSchema,
+  [smartchatBlock.id]: smartchatCredentialsSchema,
 };

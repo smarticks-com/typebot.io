@@ -13,6 +13,8 @@ import { difyAiBlock } from "@typebot.io/dify-ai-block";
 import difyAiBlockHandlers from "@typebot.io/dify-ai-block/handlers";
 import { drwebBlock } from "@typebot.io/drweb-block";
 import drwebBlockHandlers from "@typebot.io/drweb-block/handlers";
+import { smartchatBlock } from "@typebot.io/smartchat-block";
+import smartchatBlockHandlers from "@typebot.io/smartchat-block/handlers";
 import { elevenlabsBlock } from "@typebot.io/elevenlabs-block";
 import elevenlabsBlockHandlers from "@typebot.io/elevenlabs-block/handlers";
 import { gmailBlock } from "@typebot.io/gmail-block";
@@ -61,4 +63,5 @@ export const forgedBlockHandlers = {
   [blinkBlock.id]: blinkBlockHandlers,
   [gmailBlock.id]: gmailBlockHandlers,
   [drwebBlock.id]: drwebBlockHandlers,
+  [smartchatBlock.id]: smartchatBlockHandlers,
 };
