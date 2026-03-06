@@ -2,24 +2,15 @@ import { createAction, option } from "@typebot.io/forge";
 import { isDefined } from "@typebot.io/lib/utils";
 import { auth } from "../auth";
 
-export const updateAppointment = createAction({
+export const addCrmTicketAction = createAction({
   auth,
-  name: "Update Appointment (Cancel)",
+  name: "Add CRM Ticket Action",
   options: option.object({
     apiToken: option.string.meta({
       layout: {
         label: "API Token variable",
         inputType: "variableDropdown",
         isRequired: true,
-      },
-    }),
-    appointmentJson: option.string.meta({
-      layout: {
-        label: "Full appointment JSON (variable)",
-        withVariableButton: true,
-        isRequired: true,
-        helperText:
-          "Pass the full appointment object as JSON string from cancel_appointment_json",
       },
     }),
     customerID: option.string.meta({
@@ -29,25 +20,19 @@ export const updateAppointment = createAction({
         isRequired: true,
       },
     }),
-    remark: option.string.meta({
+    actionTypeID: option.string.meta({
       layout: {
-        label: "Remark / note (optional)",
+        label: "Action Type ID",
+        defaultValue: "1",
         withVariableButton: true,
-        helperText: "Add a remark to the appointment (e.g., late notification)",
       },
     }),
-    cancelAppointment: option.string.meta({
+    description: option.string.meta({
       layout: {
-        label: "Cancel appointment (true/false)",
-        defaultValue: "true",
+        label: "Description",
         withVariableButton: true,
-        helperText: "Set to false to update remark without cancelling",
-      },
-    }),
-    cancelReasonID: option.number.meta({
-      layout: {
-        label: "Cancel reason ID",
-        defaultValue: 1,
+        isRequired: true,
+        inputType: "textarea",
       },
     }),
     saveSuccessTo: option.string.meta({

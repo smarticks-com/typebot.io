@@ -16,10 +16,17 @@ export const searchCustomers = createAction({
     }),
     phone: option.string.meta({
       layout: {
-        isRequired: true,
         label: "Phone number",
         placeholder: "{{callerid}}",
         withVariableButton: true,
+      },
+    }),
+    identity: option.string.meta({
+      layout: {
+        label: "Identity (TZ / Passport)",
+        placeholder: "{{tz}}",
+        withVariableButton: true,
+        helperText: "Search by identity number (optional, used if phone not provided)",
       },
     }),
     maxResults: option.number.meta({

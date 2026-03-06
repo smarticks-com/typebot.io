@@ -13,6 +13,21 @@ export const getAppointments = createAction({
         isRequired: true,
       },
     }),
+    customerID: option.string.meta({
+      layout: {
+        label: "Filter by Customer ID (optional)",
+        withVariableButton: true,
+        helperText: "If set, only returns appointments for this customer",
+      },
+    }),
+    futureOnly: option.string.meta({
+      layout: {
+        label: "Future only (true/false)",
+        defaultValue: "false",
+        withVariableButton: true,
+        helperText: "If true, only returns non-cancelled future appointments",
+      },
+    }),
     maxResults: option.number.meta({
       layout: {
         label: "Max results",

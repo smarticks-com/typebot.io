@@ -26,25 +26,30 @@ export const searchCustomersHandler = createActionHandler(searchCustomers, {
         if (!phone.startsWith("0")) phone = "0" + phone;
       }
 
+      const identity = options.identity ?? "";
+
       const url = `${tenantUrl}/CommonAPI/v1/Customer/SearchCustomers`;
       const headers = {
         "Content-Type": "application/json",
         DRWebCommonAPIToken: apiToken,
       };
 
-      // Try with phone filter first (matches Phone/landline field)
+      const searchBody: Record<string, unknown> = { maxResults };
+      if (phone) searchBody.phone = phone;
+      if (identity) searchBody.identity = identity;
+
       let data = await ky
         .post(url, {
           headers,
-          json: phone ? { phone, maxResults } : { maxResults },
+          json: searchBody,
           timeout: 10_000,
         })
         .json<{ Code: number; Error: string | null; Result: unknown[] | null }>();
 
       let results = data.Result ?? [];
 
-      // If no results, number may be in Mobile field — retry without filter
-      if (results.length === 0 && phone) {
+      // If no results with phone, number may be in Mobile field — retry without phone filter
+      if (results.length === 0 && phone && !identity) {
         data = await ky
           .post(url, {
             headers,

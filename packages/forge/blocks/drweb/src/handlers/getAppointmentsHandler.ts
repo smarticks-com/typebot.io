@@ -32,7 +32,29 @@ export const getAppointmentsHandler = createActionHandler(getAppointments, {
         )
         .json<{ Code: number; Error: string | null; Result: unknown[] | null }>();
 
-      const appts = data.Result ?? [];
+      let appts = data.Result as Record<string, unknown>[] ?? [];
+
+      // Filter by customerID if provided
+      const filterCustId = options.customerID
+        ? Number(options.customerID)
+        : null;
+      if (filterCustId) {
+        appts = appts.filter(
+          (a) => Number(a.CustomerID ?? a.customerID) === filterCustId,
+        );
+      }
+
+      // Filter to future non-cancelled if requested
+      if (options.futureOnly === "true") {
+        const now = new Date();
+        appts = appts.filter((a) => {
+          const dt = a.AppointmentDateTime ?? a.appointmentDateTime;
+          if (!dt) return false;
+          const canceled = a.Canceled ?? a.canceled;
+          if (canceled === true) return false;
+          return new Date(String(dt)) > now;
+        });
+      }
 
       if (options.saveResultsTo)
         variables.set([

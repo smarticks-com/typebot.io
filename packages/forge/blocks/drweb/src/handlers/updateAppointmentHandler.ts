@@ -23,6 +23,8 @@ export const updateAppointmentHandler = createActionHandler(
         const apptRaw = options.appointmentJson ?? "{}";
         const appt = JSON.parse(apptRaw) as Record<string, unknown>;
 
+        const shouldCancel = options.cancelAppointment !== "false";
+
         const body: Record<string, unknown> = {
           id: appt.ID ?? appt.id,
           appointmentDateTime: appt.AppointmentDateTime ?? appt.appointmentDateTime,
@@ -32,9 +34,16 @@ export const updateAppointmentHandler = createActionHandler(
           customerID: Number(options.customerID),
           priceListID: appt.PriceListID ?? appt.priceListID ?? 1,
           priceListCodeID: appt.PriceListCodeID ?? appt.priceListCodeID ?? 1,
-          canceled: true,
-          cancelReasonID: options.cancelReasonID ?? 1,
         };
+
+        if (shouldCancel) {
+          body.canceled = true;
+          body.cancelReasonID = options.cancelReasonID ?? 1;
+        }
+
+        if (options.remark) {
+          body.remark = options.remark;
+        }
 
         const data = await ky
           .put(`${tenantUrl}/CommonAPI/v1/Appointment/Update`, {
